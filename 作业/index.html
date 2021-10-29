@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/style2.css">
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.wrap{
+				width: 100%;
+				height: 100vh;
+				color: #fff;
+				font-size: 60px;
+				padding: 30px;
+				box-sizing: border-box;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				background: url(images/WechatIMG2.jpeg) center center no-repeat;
+				background-size: cover;
+			}
+			.gradient-text {
+				background: linear-gradient(90deg, red, orange);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				animation: hue 5s linear infinite;
+			}
+			@keyframes hue {
+				from {
+					filter: hue-rotate(0);
+				}
+				to {
+					filter: hue-rotate(-1turn);
+				}
+			}
+			.cat{
+				position: fixed;
+				right: 0;
+				bottom: 70px;
+				left: auto;
+				top: auto;
+			}
+		</style>
+		<script>
+			window.onload = function(){
+				var timer = null;
+				var timer2 = null;
+				var clock = function(){
+					var oDate = new Date(),
+						passTime = new Date('2021/10/24 21:00:00');
+					var calcTime = oDate.getTime() - passTime.getTime();
+					return "小可爱辛苦啦，我们分开了" + parseInt(calcTime / 1000) + "秒";
+				};
+				setInterval(function(){
+					document.getElementById('clock').innerHTML = clock();
+				},1000);
+				
+				timer2 = setInterval(function(){
+					var arr = ['多','顶','傻','笨','装','专','事','爱','暖','业','楠','导'];
+					var str = '';
+					for(var i=0; i<arr.length; i++){
+						var now = Math.ceil(Math.random()*11);
+						str += arr[now];
+					}
+					document.getElementById('zaoju').innerHTML = "哪个写的好，您自己挑呗：" +str;
+				},3000);
+				
+			};
+		</script>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="clock" id="clock"></div>
+			<div class="zaoju gradient-text" id="zaoju"></div>
+		</div>
+		<div class="cat">
+		    <div class="face">
+		      <div class="ear-left">
+		        <div class="inner-l"></div>
+		      </div>
+		      <div class="ear-right">
+		        <div class="inner-r"></div>
+		      </div>
+		      <div class="eye-left">
+		        <div class="eye-ball">
+		          <div class="eye-light"></div>
+		          <div class="shadow-light"></div>
+		        </div>
+		      </div>
+		      <div class="eye-right">
+		        <div class="eye-ball">
+		          <div class="eye-light"></div>
+		          <div class="shadow-light"></div>
+		        </div>
+		      </div>
+		      <div class="nose">
+		        <div class="l1"></div>
+		        <div class="l2"></div>
+		      </div>
+		    </div>
+		    <div class="cat-body">
+		      <div class="paw1"></div>
+		      <div class="paw2"></div>
+		      <div class="tail"></div>
+		    </div>
+		  </div>
+		  <div class="heart">
+		    <div class="heart-l"></div>
+		    <div class="heart-r"></div>
+		  </div>
+		</div>
+	</body>
+</html>

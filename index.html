@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/style2.css">
+		<script src="js/jquery-1.7.2.js"></script>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				overflow: hidden;
+			}
+			.wrap{
+				width: 100%;
+				height: 100vh;
+				color: #fff;
+				font-size: 60px;
+				padding: 30px;
+				box-sizing: border-box;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				background: url(images/WechatIMG2.jpeg) center center no-repeat;
+				background-size: cover;
+				overflow: hidden;
+			}
+			.gradient-text {
+				background: linear-gradient(90deg, red, orange);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				animation: hue 5s linear infinite;
+			}
+			@keyframes hue {
+				from {
+					filter: hue-rotate(0);
+				}
+				to {
+					filter: hue-rotate(-1turn);
+				}
+			}
+			#flowerzone{
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				z-index: 999999;
+				overflow: hidden;
+			}
+			
+			.flower{
+				width: 300px;
+				height: 300px;
+				line-height: 300px;
+				text-align: center;
+				font-size: 60px;
+				color: #fff;
+				position: absolute;
+				top: 30%;
+				left: 50%;
+				margin-top: -150px;
+				margin-left: -150px;
+			}
+			.flower i{
+				font-style: normal;
+				opacity: 0;
+				animation: textshow 1s ease-in infinite;
+				display: block;
+			}
+			.flower span{
+				opacity: 0;
+			}
+			.flower .num1{
+				position: absolute;
+				top: 0;
+				left: 50%;
+				margin-left: -15px;
+				width: 30px;
+				height: 30px;
+				border-radius: 50% 50% 50% 0;
+				transform: rotate(-45deg);
+				animation: move1 1s ease-in-out infinite;
+			}
+			.flower .num2{
+				position: absolute;
+				top: 50%;
+				right: 0;
+				margin-top: -15px;
+				width: 30px;
+				height: 30px;
+				border-radius: 50% 50% 50% 0;
+				transform: rotate(45deg);
+				animation: move2 1s ease-in-out infinite;
+			}
+			.flower .num3{
+				position: absolute;
+				bottom: 0;
+				left: 50%;
+				margin-left: -15px;
+				width: 30px;
+				height: 30px;
+				border-radius: 50% 50% 50% 0;
+				transform: rotate(135deg);
+				animation: move3 1s ease-in-out infinite;
+			}
+			.flower .num4{
+				position: absolute;
+				left: 0;
+				top: 50%;
+				margin-top: -15px;
+				width: 30px;
+				height: 30px;
+				border-radius: 50% 50% 50% 0;
+				transform: rotate(225deg);
+				animation: move4 1s ease-in-out infinite;
+			}
+			@keyframes move1{
+				0%{
+					top: 125px;
+					opacity: 0;
+					transform: scale(0.3) rotate(-45deg);
+				}
+				50%{
+					opacity: 1;
+					transform: scale(1) rotate(-45deg);
+				}
+				100%{
+					top: 0;
+					opacity: 0;
+					transform: scale(0.3) rotate(-45deg);
+				}
+			}
+			@keyframes move2{	
+				0%{
+					right: 125px;
+					opacity: 0;
+					transform: scale(0.3) rotate(45deg);
+				}
+				50%{
+					opacity: 1;
+					transform: scale(1) rotate(45deg);
+				}
+				100%{
+					right: 0;
+					opacity: 0;
+					transform: scale(0.3) rotate(45deg);
+				}
+			}
+			@keyframes move3{
+				0%{
+					bottom: 125px;
+					opacity: 0;
+					transform: scale(0.3) rotate(135deg);
+				}
+				50%{
+					opacity: 1;
+					transform: scale(1) rotate(135deg);
+				}
+				100%{
+					bottom: 0;
+					opacity: 0;
+					transform: scale(0.3) rotate(135deg);
+				}
+			}
+			@keyframes move4{
+				0%{
+					left: 125px;
+					opacity: 0;
+					transform: scale(0.3) rotate(225deg);
+				}
+				50%{
+					opacity: 1;
+					transform: scale(1) rotate(225deg);
+				}
+				100%{
+					left: 0;
+					opacity: 0;
+					transform: scale(0.3) rotate(225deg);
+				}
+			}
+			
+			@keyframes textshow{
+				0%{
+					opacity: 0;
+					transform: scale(.3);
+				}
+				50%{
+					opacity: 1;
+					transform: scale(1.5);
+				}
+				100%{
+					opacity: 0;
+				}
+			}
+			.cat{
+				position: fixed;
+				right: 0;
+				bottom: 70px;
+				left: auto;
+				top: auto;
+			}
+		</style>
+		<script>
+			window.onload = function(){
+				var timer = null;
+				var timer2 = null;
+				var clock = function(){
+					var oDate = new Date(),
+						passTime = new Date('2021/10/24 21:00:00');
+					var calcTime = oDate.getTime() - passTime.getTime();
+					return "小可爱辛苦啦，我们分开了" + parseInt(calcTime / 1000) + "秒";
+				};
+				setInterval(function(){
+					document.getElementById('clock').innerHTML = clock();
+				},1000);
+				
+				timer2 = setInterval(function(){
+					var arr = ['多','顶','傻','笨','装','专','事','爱','暖','业','楠','导'];
+					var str = '';
+					for(var i=0; i<arr.length; i++){
+						var now = Math.ceil(Math.random()*11);
+						str += arr[now];
+					}
+					document.getElementById('zaoju').innerHTML = "哪个写的好，您自己挑呗：" +str;
+				},3000);
+				
+				
+				//烟花
+				fallFlower()
+				function fallFlower(){
+					function setColor(){
+						var colorArr = ["#ff0103","#ff7e06","#ffe91f","#03bc09","#0102cc","#fd00f2","#89a2f6","#fd0040","#01cf13","#ff00fc","#07fcff"];
+						return colorArr[Math.floor((Math.random()*colorArr.length))];
+					}
+					
+					var aSpan = $('.flower span');
+					for(var i=0; i<aSpan.length; i++){
+						var bg = setColor();
+						console.log(bg);
+						aSpan.eq(i).css("background",bg);
+					}
+					
+					$('#snowzone h3').removeClass('animated rotateInDownLeft');
+				}
+				
+				
+				
+			};
+		</script>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="clock" id="clock"></div>
+			<div class="zaoju gradient-text" id="zaoju"></div>
+			
+			<div id="flowerzone">
+				<div class="flower" style="left: 35%; top: 20%;">
+					<span class="num1"></span>
+					<span class="num2"></span>
+					<span class="num3"></span>
+					<span class="num4"></span>
+					<i style="animation-delay: .5s;">天</i>
+				</div>
+				<div class="flower" style="transform: rotate(45deg); left: 35%; top: 20%;">
+					<span class="num1"></span>
+					<span class="num2"></span>
+					<span class="num3"></span>
+					<span class="num4"></span>
+				</div>
+				
+				<div class="flower" style="left: 20%; top: 200px;">
+					<span class="num1" style="animation-delay: .25s;"></span>
+					<span class="num2" style="animation-delay: .25s;"></span>
+					<span class="num3" style="animation-delay: .25s;"></span>
+					<span class="num4" style="animation-delay: .25s;"></span>
+					<i style="animation-delay: .5s;">明</i>
+				</div>
+				<div class="flower" style="transform: rotate(45deg); left: 20%; top: 200px;">
+					<span class="num1" style="animation-delay: .25s;"></span>
+					<span class="num2" style="animation-delay: .25s;"></span>
+					<span class="num3" style="animation-delay: .25s;"></span>
+					<span class="num4" style="animation-delay: .25s;"></span>
+				</div>
+				
+				<div class="flower" style="left: 60%; top: 400px;">
+					<span class="num1" style="animation-delay: .5s;"></span>
+					<span class="num2" style="animation-delay: .5s;"></span>
+					<span class="num3" style="animation-delay: .5s;"></span>
+					<span class="num4" style="animation-delay: .5s;"></span>
+					<i style="animation-delay: .8s;">加</i>
+				</div>
+				<div class="flower" style="transform: rotate(45deg); left: 60%; top: 400px;">
+					<span class="num1" style="animation-delay: .5s;"></span>
+					<span class="num2" style="animation-delay: .5s;"></span>
+					<span class="num3" style="animation-delay: .5s;"></span>
+					<span class="num4" style="animation-delay: .5s;"></span>
+				</div>
+				
+				<div class="flower" style="left: 80%; top: 300px;">
+					<span class="num1" style="animation-delay: .75s;"></span>
+					<span class="num2" style="animation-delay: .75s;"></span>
+					<span class="num3" style="animation-delay: .75s;"></span>
+					<span class="num4" style="animation-delay: .75s;"></span>
+					<i style="animation-delay: .9s;">油</i>
+				</div>
+				<div class="flower" style="transform: rotate(45deg); left: 80%; top: 300px;">
+					<span class="num1" style="animation-delay: .75s;"></span>
+					<span class="num2" style="animation-delay: .75s;"></span>
+					<span class="num3" style="animation-delay: .75s;"></span>
+					<span class="num4" style="animation-delay: .75s;"></span>
+				</div>
+			</div>
+			
+			
+		</div>
+		<div class="cat">
+		    <div class="face">
+		      <div class="ear-left">
+		        <div class="inner-l"></div>
+		      </div>
+		      <div class="ear-right">
+		        <div class="inner-r"></div>
+		      </div>
+		      <div class="eye-left">
+		        <div class="eye-ball">
+		          <div class="eye-light"></div>
+		          <div class="shadow-light"></div>
+		        </div>
+		      </div>
+		      <div class="eye-right">
+		        <div class="eye-ball">
+		          <div class="eye-light"></div>
+		          <div class="shadow-light"></div>
+		        </div>
+		      </div>
+		      <div class="nose">
+		        <div class="l1"></div>
+		        <div class="l2"></div>
+		      </div>
+		    </div>
+		    <div class="cat-body">
+		      <div class="paw1"></div>
+		      <div class="paw2"></div>
+		      <div class="tail"></div>
+		    </div>
+		  </div>
+		  <div class="heart">
+		    <div class="heart-l"></div>
+		    <div class="heart-r"></div>
+		  </div>
+		</div>
+	</body>
+</html>
